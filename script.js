@@ -630,53 +630,224 @@ if (skillsSection) {
     
     skillsObserver.observe(skillsSection);
 }
-// Optimized rotating text animation with better performance
-function initRotatingText() {
-    const rotateItems = document.querySelectorAll('.rotate-item');
-    let currentIndex = 0;
+// Neural Network Canvas Animation
+function initNeuralNetwork() {
+    const canvas = document.getElementById('neural-canvas');
+    if (!canvas) return;
     
-    if (rotateItems.length === 0) return;
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     
-    // Use longer intervals to reduce CPU usage
-    setInterval(() => {
-        // Remove active class from current item
-        rotateItems[currentIndex].classList.remove('active');
-        
-        // Move to next item
-        currentIndex = (currentIndex + 1) % rotateItems.length;
-        
-        // Add active class to new item
-        rotateItems[currentIndex].classList.add('active');
-    }, 3000); // Increased from 2000ms to 3000ms
-}
-
-// Optimized tech icons with reduced animation frequency
-function initTechIcons() {
-    const techIcons = document.querySelectorAll('.tech-icon');
+    const nodes = [];
+    const nodeCount = 50;
     
-    techIcons.forEach((icon, index) => {
-        icon.style.animationDelay = `${index * 0.8}s`; // Increased delay
+    // Create nodes
+    for (let i = 0; i < nodeCount; i++) {
+        nodes.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            radius: Math.random() * 2 + 1
+        });
+    }
+    
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Use passive event listeners for better performance
-        icon.addEventListener('mouseenter', () => {
-            icon.style.transform = 'scale(1.1) rotate(180deg)'; // Reduced rotation
-            icon.style.transition = 'transform 0.3s ease'; // Faster transition
-        }, { passive: true });
+        // Update and draw nodes
+        nodes.forEach((node, i) => {
+            node.x += node.vx;
+            node.y += node.vy;
+            
+            // Bounce off edges
+            if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+            if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+            
+            // Draw node
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(0, 255, 136, 0.6)';
+            ctx.fill();
+            
+            // Draw connections
+            nodes.forEach((otherNode, j) => {
+                if (i !== j) {
+                    const distance = Math.sqrt(
+                        Math.pow(node.x - otherNode.x, 2) + 
+                        Math.pow(node.y - otherNode.y, 2)
+                    );
+                    
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.moveTo(node.x, node.y);
+                        ctx.lineTo(otherNode.x, otherNode.y);
+                        ctx.strokeStyle = `rgba(0, 255, 136, ${0.3 * (1 - distance / 100)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            });
+        });
         
-        icon.addEventListener('mouseleave', () => {
-            icon.style.transform = 'scale(1) rotate(0deg)';
-        }, { passive: true });
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    // Resize handler
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
     });
 }
 
-// Throttled initialization to prevent blocking
+// Role Carousel Animation
+function initRoleCarousel() {
+    const roleItems = document.querySelectorAll('.role-item');
+    let currentRole = 0;
+    
+    if (roleItems.length === 0) return;
+    
+    setInterval(() => {
+        roleItems[currentRole].classList.remove('active');
+        currentRole = (currentRole + 1) % roleItems.length;
+        roleItems[currentRole].classList.add('active');
+    }, 3000);
+}
+
+// Skill Orbs Interaction
+function initSkillOrbs() {
+    const skillOrbs = document.querySelectorAll('.skill-orb');
+    
+    skillOrbs.forEach((orb, index) => {
+        orb.addEventListener('mouseenter', () => {
+            // Create ripple effect
+            const ripple = document.createElement('div');
+            ripple.style.cssText = `
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 0;
+                height: 0;
+                background: rgba(0, 255, 136, 0.3);
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+                animation: ripple 0.6s ease-out;
+                pointer-events: none;
+                z-index: 1;
+            `;
+            
+            orb.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+}
+
+// 3D Card Interaction
+function init3DCard() {
+    const card = document.querySelector('.profile-3d-card');
+    if (!card) return;
+    
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    });
+}
+
+// Terminal Typing Effect
+function initTerminalTyping() {
+    const typingElements = document.querySelectorAll('.typing-effect');
+    
+    typingElements.forEach(element => {
+        const text = element.textContent;
+        element.textContent = '';
+        
+        let i = 0;
+        const typeInterval = setInterval(() => {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                i++;
+            } else {
+                clearInterval(typeInterval);
+                setTimeout(() => {
+                    element.textContent = '';
+                    i = 0;
+                    const newInterval = setInterval(() => {
+                        if (i < text.length) {
+                            element.textContent += text.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(newInterval);
+                        }
+                    }, 100);
+                }, 2000);
+            }
+        }, 100);
+    });
+}
+
+// Parallax Effect for Hero Elements
+function initParallaxEffect() {
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.tech-constellation, .holographic-terminal');
+        
+        parallaxElements.forEach((element, index) => {
+            const speed = 0.5 + (index * 0.1);
+            element.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+    });
+}
+
+// Initialize all hero effects
 document.addEventListener('DOMContentLoaded', () => {
-    // Use setTimeout to prevent blocking the main thread
     setTimeout(() => {
-        initRotatingText();
-        initTechIcons();
+        initNeuralNetwork();
+        initRoleCarousel();
+        initSkillOrbs();
+        init3DCard();
+        initTerminalTyping();
+        initParallaxEffect();
     }, 100);
 });
+
+// Add ripple animation CSS
+const rippleCSS = `
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+    }
+}
+`;
+
+const style = document.createElement('style');
+style.textContent = rippleCSS;
+document.head.appendChild(style);
 // Additional safeguard to prevent any form redirects
 document.addEventListener('DOMContentLoaded', function() {
     // Ensure no form submissions cause page redirects

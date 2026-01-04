@@ -55,162 +55,221 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-background">
-            <div class="hero-particles"></div>
-            <div class="hero-grid"></div>
+        <!-- Advanced Background Effects -->
+        <div class="hero-bg-effects">
+            <div class="neural-network">
+                <canvas id="neural-canvas"></canvas>
+            </div>
+            <div class="floating-code">
+                <div class="code-fragment">const security = 'paramount';</div>
+                <div class="code-fragment">function hackTheWorld() {</div>
+                <div class="code-fragment">return 'ethically';</div>
+                <div class="code-fragment">}</div>
+                <div class="code-fragment">class CyberExpert {</div>
+                <div class="code-fragment">deploy() { return 'success'; }</div>
+            </div>
+            <div class="holographic-grid"></div>
         </div>
-        
+
         <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>CEH v13 Certified Ethical Hacker</span>
+            <!-- Left Side - Interactive Content -->
+            <div class="hero-left">
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span>Available for Projects</span>
                 </div>
-                
-                <div class="hero-title-section">
-                    <h1 class="hero-title">
-                        <span class="title-line">Hi, I'm</span>
-                        <span class="name-highlight">PRATIK LAKKUNDI</span>
-                        <span class="title-line">Full Stack Developer</span>
-                    </h1>
+
+                <div class="hero-intro">
+                    <div class="greeting-text">
+                        <span class="wave">👋</span>
+                        <span>Hello, I'm</span>
+                    </div>
                     
-                    <div class="hero-subtitle">
-                        <span class="subtitle-text">I specialize in </span>
-                        <span class="rotating-text">
-                            <span class="rotate-item active">Secure Web Applications</span>
-                            <span class="rotate-item">Cybersecurity Solutions</span>
-                            <span class="rotate-item">Cloud Technologies</span>
-                            <span class="rotate-item">Ethical Hacking</span>
-                        </span>
+                    <h1 class="hero-name">
+                        <span class="name-part" data-text="PRATIK">PRATIK</span>
+                        <span class="name-part" data-text="LAKKUNDI">LAKKUNDI</span>
+                    </h1>
+
+                    <div class="role-container">
+                        <div class="role-prefix">I'm a</div>
+                        <div class="role-carousel">
+                            <div class="role-item active">
+                                <span class="role-icon">💻</span>
+                                <span class="role-text">Full Stack Developer</span>
+                            </div>
+                            <div class="role-item">
+                                <span class="role-icon">🛡️</span>
+                                <span class="role-text">Certified Ethical Hacker</span>
+                            </div>
+                            <div class="role-item">
+                                <span class="role-icon">☁️</span>
+                                <span class="role-text">Cloud Security Expert</span>
+                            </div>
+                            <div class="role-item">
+                                <span class="role-icon">🚀</span>
+                                <span class="role-text">Innovation Catalyst</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <p class="hero-description">
-                    Building the future with code and security. I create robust, scalable applications 
-                    while ensuring they're protected against tomorrow's cyber threats.
-                </p>
-
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">7+</span>
-                        <span class="stat-label">Projects</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">Security Tests</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">5+</span>
-                        <span class="stat-label">Cloud Deployments</span>
-                    </div>
+                <div class="hero-description">
+                    <p>Crafting <span class="highlight-word">secure digital experiences</span> that push boundaries. 
+                    I blend cutting-edge development with <span class="highlight-word">cybersecurity mastery</span> 
+                    to build the future, one line of code at a time.</p>
                 </div>
 
+                <!-- Interactive Skills Preview -->
+                <div class="skills-preview">
+                    <div class="skill-orb" data-skill="React">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <div class="skill-orb" data-skill="Python">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <div class="skill-orb" data-skill="AWS">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <div class="skill-orb" data-skill="Security">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="skill-orb" data-skill="Docker">
+                        <i class="fab fa-docker"></i>
+                    </div>
+                    <div class="connecting-lines"></div>
+                </div>
+
+                <!-- CTA Buttons -->
                 <div class="hero-actions">
-                    <a href="#projects" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i>
-                        <span>View My Work</span>
-                    </a>
-                    <a href="#contact" class="btn btn-outline">
-                        <i class="fas fa-paper-plane"></i>
-                        <span>Let's Connect</span>
-                    </a>
+                    <button class="cta-primary" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">
+                        <span class="btn-text">Explore My Work</span>
+                        <span class="btn-icon">🚀</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                    
+                    <button class="cta-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                        <span class="btn-text">Let's Connect</span>
+                        <span class="btn-icon">💬</span>
+                    </button>
                 </div>
 
-                <div class="hero-social">
-                    <span class="social-label">Follow me:</span>
-                    <div class="social-links">
-                        <a href="https://github.com/Pratiklakkundi" class="social-link" target="_blank">
+                <!-- Social Links with Animation -->
+                <div class="social-dock">
+                    <div class="social-item" data-platform="GitHub">
+                        <a href="https://github.com/Pratiklakkundi" target="_blank">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://linkedin.com/in/pratik-lakkundi" class="social-link" target="_blank">
+                    </div>
+                    <div class="social-item" data-platform="LinkedIn">
+                        <a href="https://linkedin.com/in/pratik-lakkundi" target="_blank">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="mailto:pratiklakkundi@gmail.com" class="social-link">
+                    </div>
+                    <div class="social-item" data-platform="Email">
+                        <a href="mailto:pratiklakkundi@gmail.com">
                             <i class="fas fa-envelope"></i>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="hero-visual">
-                <div class="hero-image-container">
-                    <div class="hero-image">
-                        <img src="pratik-photo.jpg" alt="Pratik Lakkundi" class="profile-hero-img">
-                        <div class="image-overlay">
-                            <div class="tech-icons">
-                                <div class="tech-icon"><i class="fab fa-react"></i></div>
-                                <div class="tech-icon"><i class="fab fa-python"></i></div>
-                                <div class="tech-icon"><i class="fab fa-aws"></i></div>
-                                <div class="tech-icon"><i class="fas fa-shield-alt"></i></div>
-                                <div class="tech-icon"><i class="fab fa-docker"></i></div>
-                                <div class="tech-icon"><i class="fab fa-node-js"></i></div>
+            <!-- Right Side - 3D Interactive Display -->
+            <div class="hero-right">
+                <div class="hero-visual-container">
+                    <!-- 3D Profile Card -->
+                    <div class="profile-3d-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="profile-image-3d">
+                                    <img src="pratik-photo.jpg" alt="Pratik Lakkundi" class="profile-img-3d">
+                                    <div class="image-glow"></div>
+                                </div>
+                                <div class="profile-info-3d">
+                                    <h3>Pratik Lakkundi</h3>
+                                    <div class="certification-badge">
+                                        <i class="fas fa-certificate"></i>
+                                        <span>CEH v13 Certified</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="stats-3d">
+                                    <div class="stat-3d">
+                                        <div class="stat-number">7+</div>
+                                        <div class="stat-label">Projects</div>
+                                    </div>
+                                    <div class="stat-3d">
+                                        <div class="stat-number">50+</div>
+                                        <div class="stat-label">Security Tests</div>
+                                    </div>
+                                    <div class="stat-3d">
+                                        <div class="stat-number">5+</div>
+                                        <div class="stat-label">Deployments</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="code-preview">
-                    <div class="code-window">
-                        <div class="code-header">
-                            <div class="code-dots">
-                                <span class="dot red"></span>
-                                <span class="dot yellow"></span>
-                                <span class="dot green"></span>
+                    <!-- Holographic Terminal -->
+                    <div class="holographic-terminal">
+                        <div class="terminal-header-3d">
+                            <div class="terminal-controls">
+                                <span class="control-dot red"></span>
+                                <span class="control-dot yellow"></span>
+                                <span class="control-dot green"></span>
                             </div>
-                            <span class="code-title">security_expert.py</span>
+                            <div class="terminal-title">pratik@cybersec:~$</div>
                         </div>
-                        <div class="code-content">
-                            <div class="code-line">
-                                <span class="line-number">1</span>
-                                <span class="code-text">
-                                    <span class="keyword">class</span> 
-                                    <span class="class-name">CyberSecurityExpert</span>:
-                                </span>
+                        <div class="terminal-content-3d">
+                            <div class="terminal-line-3d">
+                                <span class="prompt-3d">$</span>
+                                <span class="command-3d typing-effect">whoami</span>
                             </div>
-                            <div class="code-line">
-                                <span class="line-number">2</span>
-                                <span class="code-text">
-                                    &nbsp;&nbsp;<span class="keyword">def</span> 
-                                    <span class="function">__init__</span>(self):
-                                </span>
+                            <div class="terminal-line-3d">
+                                <span class="output-3d">Certified Ethical Hacker & Full Stack Developer</span>
                             </div>
-                            <div class="code-line">
-                                <span class="line-number">3</span>
-                                <span class="code-text">
-                                    &nbsp;&nbsp;&nbsp;&nbsp;self.name = <span class="string">"Pratik Lakkundi"</span>
-                                </span>
+                            <div class="terminal-line-3d">
+                                <span class="prompt-3d">$</span>
+                                <span class="command-3d">cat mission.txt</span>
                             </div>
-                            <div class="code-line">
-                                <span class="line-number">4</span>
-                                <span class="code-text">
-                                    &nbsp;&nbsp;&nbsp;&nbsp;self.skills = [<span class="string">"CEH"</span>, <span class="string">"Full Stack"</span>]
-                                </span>
+                            <div class="terminal-line-3d">
+                                <span class="output-3d">Building secure digital futures 🚀</span>
                             </div>
-                            <div class="code-line">
-                                <span class="line-number">5</span>
-                                <span class="code-text">
-                                    &nbsp;&nbsp;&nbsp;&nbsp;self.mission = <span class="string">"Secure the digital world"</span>
-                                </span>
+                            <div class="terminal-line-3d">
+                                <span class="prompt-3d">$</span>
+                                <span class="command-3d">./deploy_innovation.sh</span>
                             </div>
-                            <div class="code-line typing-line">
-                                <span class="line-number">6</span>
-                                <span class="code-text">
-                                    &nbsp;&nbsp;<span class="keyword">def</span> 
-                                    <span class="function">build_future</span>(self):
-                                    <span class="cursor-blink">|</span>
-                                </span>
+                            <div class="terminal-line-3d">
+                                <span class="output-3d success">✅ Innovation deployed successfully!</span>
+                            </div>
+                            <div class="terminal-line-3d">
+                                <span class="prompt-3d">$</span>
+                                <span class="cursor-3d">_</span>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Floating Tech Badges -->
+                    <div class="tech-constellation">
+                        <div class="tech-badge" style="--delay: 0s">React</div>
+                        <div class="tech-badge" style="--delay: 0.5s">Python</div>
+                        <div class="tech-badge" style="--delay: 1s">AWS</div>
+                        <div class="tech-badge" style="--delay: 1.5s">Docker</div>
+                        <div class="tech-badge" style="--delay: 2s">Security</div>
+                        <div class="tech-badge" style="--delay: 2.5s">IoT</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="scroll-indicator">
-            <div class="scroll-mouse">
-                <div class="scroll-wheel"></div>
+        <!-- Advanced Scroll Indicator -->
+        <div class="scroll-indicator-advanced">
+            <div class="scroll-text">Discover More</div>
+            <div class="scroll-animation">
+                <div class="scroll-line"></div>
+                <div class="scroll-dot"></div>
             </div>
-            <span class="scroll-text">Scroll to explore</span>
         </div>
     </section>
     <!-- About Section -->
