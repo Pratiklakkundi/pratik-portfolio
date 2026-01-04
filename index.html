@@ -17,9 +17,6 @@
         <div class="floating-particles"></div>
     </div>
 
-    <!-- Cursor Trail -->
-    <div class="cursor-trail"></div>
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -58,83 +55,162 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-particles"></div>
+            <div class="hero-grid"></div>
+        </div>
+        
         <div class="hero-container">
             <div class="hero-content">
-                <div class="glitch-wrapper">
-                    <h1 class="hero-title glitch" data-text="PRATIK LAKKUNDI">PRATIK LAKKUNDI</h1>
+                <div class="hero-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>CEH v13 Certified Ethical Hacker</span>
                 </div>
-                <div class="typing-container">
-                    <span class="typing-text">I am a </span>
-                    <span class="typed-text"></span>
-                    <span class="cursor">&nbsp;</span>
+                
+                <div class="hero-title-section">
+                    <h1 class="hero-title">
+                        <span class="title-line">Hi, I'm</span>
+                        <span class="name-highlight">PRATIK LAKKUNDI</span>
+                        <span class="title-line">Full Stack Developer</span>
+                    </h1>
+                    
+                    <div class="hero-subtitle">
+                        <span class="subtitle-text">I specialize in </span>
+                        <span class="rotating-text">
+                            <span class="rotate-item active">Secure Web Applications</span>
+                            <span class="rotate-item">Cybersecurity Solutions</span>
+                            <span class="rotate-item">Cloud Technologies</span>
+                            <span class="rotate-item">Ethical Hacking</span>
+                        </span>
+                    </div>
                 </div>
+
                 <p class="hero-description">
-                    <span class="code-bracket">{</span>
-                    Full Stack Developer & Certified Ethical Hacker (CEH v13) specializing in secure web applications, 
-                    cloud technologies, and cybersecurity solutions. Building the future with code and security.
-                    <span class="code-bracket">}</span>
+                    Building the future with code and security. I create robust, scalable applications 
+                    while ensuring they're protected against tomorrow's cyber threats.
                 </p>
-                <div class="hero-buttons">
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">7+</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Security Tests</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Cloud Deployments</span>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
                     <a href="#projects" class="btn btn-primary">
-                        <i class="fas fa-code"></i>
-                        <span>View Projects</span>
+                        <i class="fas fa-rocket"></i>
+                        <span>View My Work</span>
                     </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-envelope"></i>
-                        <span>Get In Touch</span>
+                    <a href="#contact" class="btn btn-outline">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Let's Connect</span>
                     </a>
                 </div>
-                <div class="social-icons">
-                    <a href="https://github.com/Pratiklakkundi" class="social-icon" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/pratik-lakkundi" class="social-icon" target="_blank">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="mailto:pratiklakkundi@gmail.com" class="social-icon">
-                        <i class="fas fa-envelope"></i>
-                    </a>
+
+                <div class="hero-social">
+                    <span class="social-label">Follow me:</span>
+                    <div class="social-links">
+                        <a href="https://github.com/Pratiklakkundi" class="social-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/pratik-lakkundi" class="social-link" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:pratiklakkundi@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
+
             <div class="hero-visual">
-                <div class="terminal-window">
-                    <div class="terminal-header">
-                        <div class="terminal-buttons">
-                            <span class="btn-close"></span>
-                            <span class="btn-minimize"></span>
-                            <span class="btn-maximize"></span>
+                <div class="hero-image-container">
+                    <div class="hero-image">
+                        <img src="pratik-photo.jpg" alt="Pratik Lakkundi" class="profile-hero-img">
+                        <div class="image-overlay">
+                            <div class="tech-icons">
+                                <div class="tech-icon"><i class="fab fa-react"></i></div>
+                                <div class="tech-icon"><i class="fab fa-python"></i></div>
+                                <div class="tech-icon"><i class="fab fa-aws"></i></div>
+                                <div class="tech-icon"><i class="fas fa-shield-alt"></i></div>
+                                <div class="tech-icon"><i class="fab fa-docker"></i></div>
+                                <div class="tech-icon"><i class="fab fa-node-js"></i></div>
+                            </div>
                         </div>
-                        <div class="terminal-title">pratik@cybersec:~$</div>
                     </div>
-                    <div class="terminal-body">
-                        <div class="terminal-line">
-                            <span class="prompt">pratik@cybersec:~$</span>
-                            <span class="command">whoami</span>
+                </div>
+
+                <div class="code-preview">
+                    <div class="code-window">
+                        <div class="code-header">
+                            <div class="code-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="code-title">security_expert.py</span>
                         </div>
-                        <div class="terminal-line">
-                            <span class="output">Full Stack Developer & Certified Ethical Hacker</span>
-                        </div>
-                        <div class="terminal-line">
-                            <span class="prompt">pratik@cybersec:~$</span>
-                            <span class="command">cat skills.txt</span>
-                        </div>
-                        <div class="terminal-line">
-                            <span class="output">React | Python | AWS | Cybersecurity | IoT</span>
-                        </div>
-                        <div class="terminal-line">
-                            <span class="prompt">pratik@cybersec:~$</span>
-                            <span class="command typing-command"></span>
-                            <span class="terminal-cursor">_</span>
+                        <div class="code-content">
+                            <div class="code-line">
+                                <span class="line-number">1</span>
+                                <span class="code-text">
+                                    <span class="keyword">class</span> 
+                                    <span class="class-name">CyberSecurityExpert</span>:
+                                </span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">2</span>
+                                <span class="code-text">
+                                    &nbsp;&nbsp;<span class="keyword">def</span> 
+                                    <span class="function">__init__</span>(self):
+                                </span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">3</span>
+                                <span class="code-text">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;self.name = <span class="string">"Pratik Lakkundi"</span>
+                                </span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">4</span>
+                                <span class="code-text">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;self.skills = [<span class="string">"CEH"</span>, <span class="string">"Full Stack"</span>]
+                                </span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">5</span>
+                                <span class="code-text">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;self.mission = <span class="string">"Secure the digital world"</span>
+                                </span>
+                            </div>
+                            <div class="code-line typing-line">
+                                <span class="line-number">6</span>
+                                <span class="code-text">
+                                    &nbsp;&nbsp;<span class="keyword">def</span> 
+                                    <span class="function">build_future</span>(self):
+                                    <span class="cursor-blink">|</span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="scroll-indicator">
-            <div class="scroll-text">SCROLL DOWN</div>
-            <div class="scroll-arrow">
-                <i class="fas fa-chevron-down"></i>
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
             </div>
+            <span class="scroll-text">Scroll to explore</span>
         </div>
     </section>
     <!-- About Section -->
@@ -718,9 +794,8 @@
                         </a>
                     </div>
                 </div>
-                <form class="contact-form" action="https://formspree.io/f/mpqwkwdn" method="POST">
+                <form class="contact-form" action="https://formspree.io/f/mpqwkwdn" method="POST" id="contact-form">
                     <input type="hidden" name="_subject" value="New Portfolio Contact Message from Pratik Lakkundi">
-                    <input type="hidden" name="_next" value="thank-you.html">
                     <div class="form-group">
                         <input type="text" id="name" name="name" placeholder="Your Name" required>
                     </div>
@@ -730,10 +805,11 @@
                     <div class="form-group">
                         <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" id="submit-btn">
                         <i class="fas fa-paper-plane"></i>
                         <span>Send Message</span>
                     </button>
+                    <div class="form-status" id="form-status"></div>
                 </form>
             </div>
         </div>

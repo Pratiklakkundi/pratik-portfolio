@@ -11,12 +11,26 @@ window.addEventListener('load', () => {
     }
 });
 
-// Cursor Trail Effect
-document.addEventListener('mousemove', (e) => {
-    const cursor = document.querySelector('.cursor-trail');
-    if (cursor) {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
+// Optimized scroll handling with throttling
+let ticking = false;
+
+function updateScrollEffects() {
+    const scrolled = window.pageYOffset;
+    const rate = scrolled * -0.5;
+    
+    // Only update if elements exist
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        heroSection.style.transform = `translateY(${rate}px)`;
+    }
+    
+    ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        requestAnimationFrame(updateScrollEffects);
+        ticking = true;
     }
 });
 
@@ -298,9 +312,8 @@ createFloatingParticles();
 // Form submission handling
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        // Don't prevent default if using Formspree - let it submit naturally
-        // e.preventDefault();
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Always prevent default to handle with AJAX
         
         const formData = new FormData(contactForm);
         const name = formData.get('name');
@@ -308,27 +321,54 @@ if (contactForm) {
         const message = formData.get('message');
         
         if (!name || !email || !message) {
-            e.preventDefault();
             showNotification('Please fill in all fields', 'error');
             return;
         }
         
-        const submitBtn = contactForm.querySelector('.btn');
+        const submitBtn = contactForm.querySelector('#submit-btn');
+        const formStatus = document.getElementById('form-status');
         const originalText = submitBtn.innerHTML;
         
+        // Show loading state
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Sending...</span>';
         submitBtn.disabled = true;
+        formStatus.innerHTML = '';
         
-        // If using Formspree, the form will submit and redirect/show success
-        // For demo purposes without Formspree:
-        if (!contactForm.action.includes('formspree.io')) {
-            e.preventDefault();
-            setTimeout(() => {
-                showNotification('Thank you for your message! I\'ll get back to you soon.', 'success');
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // Success
+                formStatus.innerHTML = `
+                    <div class="success-message">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Thank you! Your message has been sent successfully. I'll get back to you soon!</span>
+                    </div>
+                `;
                 contactForm.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
+                showNotification('Message sent successfully!', 'success');
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            // Error
+            formStatus.innerHTML = `
+                <div class="error-message">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>Sorry, there was an error sending your message. Please try again or contact me directly.</span>
+                </div>
+            `;
+            showNotification('Failed to send message. Please try again.', 'error');
+        } finally {
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
         }
     });
 }
@@ -577,3 +617,50 @@ if (skillsSection) {
     
     skillsObserver.observe(skillsSection);
 }
+// Optimized rotating text animation with better performance
+function initRotatingText() {
+    const rotateItems = document.querySelectorAll('.rotate-item');
+    let currentIndex = 0;
+    
+    if (rotateItems.length === 0) return;
+    
+    // Use longer intervals to reduce CPU usage
+    setInterval(() => {
+        // Remove active class from current item
+        rotateItems[currentIndex].classList.remove('active');
+        
+        // Move to next item
+        currentIndex = (currentIndex + 1) % rotateItems.length;
+        
+        // Add active class to new item
+        rotateItems[currentIndex].classList.add('active');
+    }, 3000); // Increased from 2000ms to 3000ms
+}
+
+// Optimized tech icons with reduced animation frequency
+function initTechIcons() {
+    const techIcons = document.querySelectorAll('.tech-icon');
+    
+    techIcons.forEach((icon, index) => {
+        icon.style.animationDelay = `${index * 0.8}s`; // Increased delay
+        
+        // Use passive event listeners for better performance
+        icon.addEventListener('mouseenter', () => {
+            icon.style.transform = 'scale(1.1) rotate(180deg)'; // Reduced rotation
+            icon.style.transition = 'transform 0.3s ease'; // Faster transition
+        }, { passive: true });
+        
+        icon.addEventListener('mouseleave', () => {
+            icon.style.transform = 'scale(1) rotate(0deg)';
+        }, { passive: true });
+    });
+}
+
+// Throttled initialization to prevent blocking
+document.addEventListener('DOMContentLoaded', () => {
+    // Use setTimeout to prevent blocking the main thread
+    setTimeout(() => {
+        initRotatingText();
+        initTechIcons();
+    }, 100);
+});
