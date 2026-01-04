@@ -531,8 +531,27 @@ function showNotification(message, type = 'info') {
 
 // Initialize all optimized effects
 document.addEventListener('DOMContentLoaded', () => {
+    // Show mobile loading on mobile devices
+    if (isMobile()) {
+        const mobileLoading = document.getElementById('mobile-loading');
+        if (mobileLoading) {
+            mobileLoading.style.display = 'flex';
+            
+            // Hide loading after everything is initialized
+            setTimeout(() => {
+                mobileLoading.classList.add('fade-out');
+                setTimeout(() => {
+                    mobileLoading.style.display = 'none';
+                }, 500);
+            }, 1500);
+        }
+    }
+    
     // Initialize performance optimizations first
     initPerformanceOptimizations();
+    
+    // Initialize mobile navigation
+    initMobileNavigation();
     
     setTimeout(() => {
         initMatrixRain();
@@ -546,6 +565,109 @@ document.addEventListener('DOMContentLoaded', () => {
         initResumeModal(); // RESTORED
     }, 100);
 });
+
+// Mobile Navigation Handler
+function initMobileNavigation() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (navMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Close menu when clicking on nav links
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+}
+
+// Touch-friendly interactions for mobile
+function initTouchInteractions() {
+    if (isMobile()) {
+        // Add touch feedback to interactive elements
+        const interactiveElements = document.querySelectorAll('.skill-hexagon, .btn-legendary, .project-card, .skill-item');
+        
+        interactiveElements.forEach(element => {
+            element.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.95)';
+            }, { passive: true });
+            
+            element.addEventListener('touchend', function() {
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            }, { passive: true });
+        });
+        
+        // Improve scroll performance on mobile
+        let ticking = false;
+        
+        function updateScrollElements() {
+            // Update any scroll-dependent animations here
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollElements);
+                ticking = true;
+            }
+        }, { passive: true });
+    }
+}
+
+// Mobile-specific optimizations
+function initMobileOptimizations() {
+    if (isMobile()) {
+        // Reduce animation complexity on mobile
+        const complexAnimations = document.querySelectorAll('.legendary-name .name-glitch, .legendary-name .name-shadow');
+        complexAnimations.forEach(el => el.style.display = 'none');
+        
+        // Optimize matrix rain for mobile
+        const matrixContainer = document.querySelector('.matrix-container');
+        if (matrixContainer) {
+            matrixContainer.style.opacity = '0.3';
+        }
+        
+        // Pause heavy animations when not visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                } else {
+                    entry.target.style.animationPlayState = 'paused';
+                }
+            });
+        });
+        
+        const heavyAnimations = document.querySelectorAll('.hologram-rings, .profile-cube, .tech-orbs-legendary');
+        heavyAnimations.forEach(el => observer.observe(el));
+    }
+}
 
 // Add optimized CSS animations
 const optimizedCSS = `
@@ -574,6 +696,21 @@ const optimizedCSS = `
 .reduced-motion * {
     animation-duration: 0.3s !important;
     animation-iteration-count: 1 !important;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+    .skill-hexagon:active {
+        transform: scale(0.95);
+    }
+    
+    .btn-legendary:active {
+        transform: scale(0.98);
+    }
+    
+    .project-card:active {
+        transform: scale(0.98);
+    }
 }
 
 /* Optimized existing animations */
@@ -635,18 +772,30 @@ const optimizedCSS = `
     50% { box-shadow: 0 0 20px rgba(0, 255, 136, 1); }
 }
 
-/* Mobile optimizations */
+/* Mobile touch feedback */
 @media (max-width: 768px) {
-    .hacker-elements {
-        display: none;
+    .touch-feedback {
+        position: relative;
+        overflow: hidden;
     }
     
-    .tech-orbs-legendary {
-        display: none;
+    .touch-feedback::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(0, 255, 136, 0.3);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.3s ease, height 0.3s ease;
+        pointer-events: none;
     }
     
-    .hologram-rings .ring {
-        animation-duration: 20s;
+    .touch-feedback:active::after {
+        width: 100px;
+        height: 100px;
     }
 }
 `;
@@ -654,3 +803,15 @@ const optimizedCSS = `
 const style = document.createElement('style');
 style.textContent = optimizedCSS;
 document.head.appendChild(style);
+
+// Initialize mobile optimizations when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    initTouchInteractions();
+    initMobileOptimizations();
+    
+    // Add touch feedback class to interactive elements
+    if (isMobile()) {
+        const touchElements = document.querySelectorAll('.skill-hexagon, .btn-legendary, .project-card, .nav-link');
+        touchElements.forEach(el => el.classList.add('touch-feedback'));
+    }
+});

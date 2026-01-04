@@ -2,14 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Pratik Lakkundi - Cybersecurity Portfolio</title>
     <meta name="description" content="Cybersecurity Professional & Software Developer - Portfolio showcasing my projects and skills">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <!-- Mobile Loading Indicator -->
+    <div id="mobile-loading" class="mobile-loading" style="display: none;">
+        <div class="mobile-loader">
+            <div class="loader-ring"></div>
+            <div class="loader-text">Loading...</div>
+        </div>
+    </div>
+
     <!-- Animated Background -->
     <div class="bg-animation">
         <div class="matrix-rain"></div>
@@ -238,7 +249,7 @@
                         <div class="profile-hologram">
                             <div class="profile-cube">
                                 <div class="cube-face front">
-                                    <img src="pratik-photo.jpg" alt="Pratik" class="hologram-img">
+                                    <img src="pratik-photo.jpg" alt="Pratik" class="hologram-img" loading="lazy" decoding="async">
                                     <div class="scan-lines"></div>
                                 </div>
                                 <div class="cube-face back">
@@ -369,7 +380,7 @@
                 <div class="about-left">
                     <div class="profile-card">
                         <div class="profile-image-wrapper">
-                            <img src="pratik-photo.jpg" alt="Pratik Lakkundi" class="profile-img">
+                            <img src="pratik-photo.jpg" alt="Pratik Lakkundi" class="profile-img" loading="lazy" decoding="async">
                             <div class="profile-overlay">
                                 <div class="ceh-badge">
                                     <i class="fas fa-shield-alt"></i>
@@ -981,7 +992,7 @@
             <div class="modal-body">
                 <div class="resume-preview">
                     <!-- Resume Image Preview -->
-                    <img src="resume.jpg" alt="Pratik Lakkundi Resume" id="resume-image" />
+                    <img src="resume.jpg" alt="Pratik Lakkundi Resume" id="resume-image" loading="lazy" decoding="async" />
                 </div>
                 <div class="resume-actions">
                     <a href="https://drive.google.com/uc?export=download&id=1F6VIAwBG-6uH42XEe4-DujkCIO_k9B4Q" 
