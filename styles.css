@@ -3964,3 +3964,226 @@ section {
         display: none; /* Hide floating elements on very small screens */
     }
 }
+/* 🚀 PERFORMANCE OPTIMIZATIONS FOR ALL DEVICES */
+
+/* Reduce animations on low-end devices */
+@media (max-width: 768px) {
+    .matrix-container {
+        opacity: 0.3;
+    }
+    
+    .hacker-elements {
+        display: none;
+    }
+    
+    .tech-orbs-legendary {
+        display: none;
+    }
+    
+    .hologram-rings .ring {
+        animation-duration: 30s;
+    }
+    
+    .profile-cube {
+        animation-duration: 40s;
+    }
+    
+    .neon-pulses {
+        animation-duration: 10s;
+    }
+}
+
+/* Further optimizations for very low-end devices */
+@media (max-width: 480px) {
+    .matrix-container {
+        display: none;
+    }
+    
+    .cyberpunk-grid .grid-lines {
+        animation: none;
+    }
+    
+    .legendary-name .name-glitch,
+    .legendary-name .name-shadow {
+        display: none;
+    }
+    
+    .btn-particles {
+        display: none;
+    }
+}
+
+/* Performance classes */
+.low-performance {
+    --animation-duration: 0s;
+}
+
+.low-performance * {
+    animation-duration: 0s !important;
+    transition-duration: 0.1s !important;
+}
+
+.low-performance .matrix-container,
+.low-performance .hacker-elements,
+.low-performance .tech-orbs-legendary {
+    display: none !important;
+}
+
+.reduced-motion * {
+    animation-duration: 0.3s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.2s !important;
+}
+
+/* GPU acceleration for smooth animations */
+.legendary-name,
+.skill-hexagon,
+.btn-legendary,
+.profile-cube,
+.hologram-rings,
+.quantum-terminal {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Optimize heavy animations */
+.grid-lines {
+    animation-duration: 20s;
+}
+
+.neon-pulses {
+    animation-duration: 8s;
+}
+
+.hologram-rings .ring {
+    animation-duration: 15s;
+}
+
+/* Simplified animations for better performance */
+@keyframes gridPulseSimple {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.2; }
+}
+
+@keyframes neonPulseSimple {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.4; }
+}
+
+/* Apply simplified animations on low-end devices */
+@media (max-width: 768px) {
+    .grid-lines {
+        animation: gridPulseSimple 10s ease-in-out infinite;
+    }
+    
+    .neon-pulses {
+        animation: neonPulseSimple 6s ease-in-out infinite;
+    }
+}
+
+/* Disable complex effects on very slow connections */
+@media (prefers-reduced-data) {
+    .matrix-container,
+    .hacker-elements,
+    .tech-orbs-legendary,
+    .btn-particles {
+        display: none !important;
+    }
+    
+    .legendary-name .name-glitch,
+    .legendary-name .name-shadow {
+        display: none !important;
+    }
+}
+
+/* Optimize for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .matrix-container,
+    .hacker-elements {
+        display: none !important;
+    }
+}
+
+/* Smooth scrolling optimization */
+html {
+    scroll-behavior: smooth;
+}
+
+@supports (scroll-behavior: smooth) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/* Optimize font rendering */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+}
+
+/* Optimize images */
+img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+}
+
+/* Contain layout shifts */
+.hero-legendary,
+.hologram-container,
+.quantum-terminal {
+    contain: layout style paint;
+}
+
+/* Optimize transforms */
+.skill-hexagon,
+.btn-legendary,
+.network-node {
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Reduce repaints */
+.legendary-name,
+.matrix-line,
+.skill-hexagon:hover {
+    will-change: auto;
+}
+
+/* Memory optimization */
+@media (max-width: 768px) {
+    .profile-cube .cube-face:not(.front) {
+        display: none;
+    }
+}
+
+/* Battery optimization for mobile */
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+    .matrix-container {
+        animation-play-state: paused;
+    }
+    
+    .grid-lines,
+    .neon-pulses {
+        animation-play-state: paused;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .legendary-name {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    
+    .skill-hexagon,
+    .btn-legendary {
+        border-width: 3px;
+    }
+}
