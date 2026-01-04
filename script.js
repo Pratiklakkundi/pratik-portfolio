@@ -309,23 +309,24 @@ document.head.appendChild(particleStyle);
 // Initialize floating particles
 createFloatingParticles();
 
-// Form submission handling
+// Enhanced form submission handling with proper AJAX
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Always prevent default to handle with AJAX
+        e.preventDefault(); // Always prevent default form submission
         
         const formData = new FormData(contactForm);
         const name = formData.get('name');
         const email = formData.get('email');
         const message = formData.get('message');
         
+        // Validation
         if (!name || !email || !message) {
             showNotification('Please fill in all fields', 'error');
             return;
         }
         
-        const submitBtn = contactForm.querySelector('#submit-btn');
+        const submitBtn = document.getElementById('submit-btn');
         const formStatus = document.getElementById('form-status');
         const originalText = submitBtn.innerHTML;
         
@@ -335,6 +336,7 @@ if (contactForm) {
         formStatus.innerHTML = '';
         
         try {
+            // Use fetch with proper headers for Formspree AJAX
             const response = await fetch(contactForm.action, {
                 method: 'POST',
                 body: formData,
@@ -343,30 +345,41 @@ if (contactForm) {
                 }
             });
             
+            const result = await response.json();
+            
             if (response.ok) {
-                // Success
+                // Success - show success message
                 formStatus.innerHTML = `
                     <div class="success-message">
                         <i class="fas fa-check-circle"></i>
-                        <span>Thank you! Your message has been sent successfully. I'll get back to you soon!</span>
+                        <span>Thank you ${name}! Your message has been sent successfully. I'll get back to you soon!</span>
                     </div>
                 `;
                 contactForm.reset();
                 showNotification('Message sent successfully!', 'success');
+                
+                // Scroll to success message
+                formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else {
-                throw new Error('Form submission failed');
+                // Handle Formspree errors
+                let errorMessage = 'Sorry, there was an error sending your message. Please try again.';
+                if (result.errors) {
+                    errorMessage = result.errors.map(error => error.message).join(', ');
+                }
+                throw new Error(errorMessage);
             }
         } catch (error) {
-            // Error
+            console.error('Form submission error:', error);
+            // Error - show error message
             formStatus.innerHTML = `
                 <div class="error-message">
                     <i class="fas fa-exclamation-circle"></i>
-                    <span>Sorry, there was an error sending your message. Please try again or contact me directly.</span>
+                    <span>Sorry, there was an error sending your message. Please try again or contact me directly at pratiklakkundi@gmail.com</span>
                 </div>
             `;
             showNotification('Failed to send message. Please try again.', 'error');
         } finally {
-            // Reset button
+            // Reset button state
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
         }
@@ -663,4 +676,27 @@ document.addEventListener('DOMContentLoaded', () => {
         initRotatingText();
         initTechIcons();
     }, 100);
+});
+// Additional safeguard to prevent any form redirects
+document.addEventListener('DOMContentLoaded', function() {
+    // Ensure no form submissions cause page redirects
+    const allForms = document.querySelectorAll('form');
+    allForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            // Only allow AJAX submissions
+            if (!e.defaultPrevented) {
+                e.preventDefault();
+            }
+        });
+    });
+    
+    // Prevent any accidental page navigation from form submissions
+    window.addEventListener('beforeunload', function(e) {
+        const activeElement = document.activeElement;
+        if (activeElement && activeElement.tagName === 'BUTTON' && activeElement.type === 'submit') {
+            // If a submit button is active, it might be trying to navigate
+            e.preventDefault();
+            return false;
+        }
+    });
 });
