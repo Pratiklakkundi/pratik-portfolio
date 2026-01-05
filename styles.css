@@ -2755,7 +2755,7 @@ section {
 
 /* Hero Heading */
 .hero-heading {
-    margin: 1rem 0;
+    margin: 1rem 0 2rem;
 }
 
 .hero-title {
@@ -2763,15 +2763,16 @@ section {
     font-size: 4rem;
     font-weight: 900;
     line-height: 1.1;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .title-line {
     display: block;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 400;
     color: var(--text-gray);
     margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
 }
 
 .name-highlight {
@@ -2781,18 +2782,62 @@ section {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     position: relative;
+    font-size: 4.2rem;
+    font-weight: 900;
 }
 
 .name-highlight::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: -8px;
     left: 0;
     width: 100%;
-    height: 3px;
+    height: 4px;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     border-radius: 2px;
     animation: underlineGlow 2s ease-in-out infinite;
+}
+
+/* Modern Name Introduction */
+.intro-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.name-intro {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    font-size: 1.4rem;
+}
+
+.greeting {
+    color: var(--text-gray);
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+
+.name-text {
+    color: var(--text-light);
+    font-weight: 700;
+    font-size: 1.6rem;
+    font-family: 'Orbitron', monospace;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.name-text::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    animation: nameUnderline 2s ease-out forwards;
+    animation-delay: 0.5s;
 }
 
 /* Role Container */
@@ -2800,13 +2845,14 @@ section {
     display: flex;
     align-items: center;
     gap: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: var(--text-gray);
-    margin-top: 1rem;
 }
 
 .role-prefix {
-    font-weight: 400;
+    font-weight: 300;
+    color: var(--primary-color);
+    font-size: 1.5rem;
 }
 
 .role-carousel {
@@ -2826,6 +2872,7 @@ section {
     opacity: 0;
     transform: translateY(100%);
     transition: all 0.5s ease;
+    font-size: 1.3rem;
 }
 
 .role-item.active {
@@ -3241,6 +3288,11 @@ section {
     50% { box-shadow: 0 0 15px rgba(0, 255, 136, 1); }
 }
 
+@keyframes nameUnderline {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
 @keyframes pulse {
     0%, 100% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.1); opacity: 0.8; }
@@ -3281,18 +3333,44 @@ section {
     }
     
     .title-line {
+        font-size: 1.4rem;
+    }
+    
+    .name-highlight {
+        font-size: 3rem;
+    }
+    
+    .intro-container {
+        align-items: center;
+        text-align: center;
+    }
+    
+    .name-intro {
+        justify-content: center;
         font-size: 1.2rem;
     }
     
+    .greeting {
+        font-size: 1rem;
+    }
+    
+    .name-text {
+        font-size: 1.4rem;
+    }
+    
     .role-container {
-        font-size: 1.2rem;
-        flex-direction: column;
-        align-items: center;
+        font-size: 1.1rem;
+        justify-content: center;
+        flex-wrap: wrap;
         gap: 0.5rem;
     }
     
     .role-carousel {
         min-width: 250px;
+    }
+    
+    .role-item {
+        font-size: 1.1rem;
     }
     
     .hero-actions {
@@ -3333,6 +3411,38 @@ section {
 @media (max-width: 480px) {
     .hero-title {
         font-size: 2.2rem;
+    }
+    
+    .title-line {
+        font-size: 1.2rem;
+    }
+    
+    .name-highlight {
+        font-size: 2.4rem;
+    }
+    
+    .name-intro {
+        font-size: 1rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .name-text {
+        font-size: 1.2rem;
+    }
+    
+    .role-container {
+        font-size: 1rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .role-carousel {
+        min-width: 200px;
+    }
+    
+    .role-item {
+        font-size: 1rem;
     }
     
     .hero-description {
