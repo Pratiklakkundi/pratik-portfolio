@@ -1,4 +1,4 @@
-// 🔥 OPTIMIZED LEGENDARY HERO JAVASCRIPT - SMOOTH ON ALL DEVICES 🔥
+// 🎨 MODERN PROFESSIONAL HERO JAVASCRIPT - UI/UX EXPERT LEVEL
 
 // Device Performance Detection
 const isLowEndDevice = () => {
@@ -10,351 +10,297 @@ const isMobile = () => {
     return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 };
 
-// Optimized Matrix Digital Rain Effect
-function initMatrixRain() {
-    const canvas = document.getElementById('matrix-rain');
-    if (!canvas) return;
+// Modern Role Carousel Animation
+function initRoleCarousel() {
+    const roleItems = document.querySelectorAll('.role-item');
+    if (roleItems.length === 0) return;
     
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
-    const matrixArray = matrix.split("");
-    
-    // Optimize for device performance
-    const fontSize = isLowEndDevice() ? 12 : 10;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops = [];
-    
-    // Reduce columns on low-end devices
-    const maxColumns = isLowEndDevice() ? Math.min(columns, 50) : columns;
-    
-    for (let x = 0; x < maxColumns; x++) {
-        drops[x] = 1;
-    }
-    
-    function drawMatrix() {
-        ctx.fillStyle = isLowEndDevice() ? 'rgba(0, 0, 0, 0.08)' : 'rgba(0, 0, 0, 0.04)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = '#00ff88';
-        ctx.font = fontSize + 'px monospace';
-        
-        for (let i = 0; i < drops.length; i++) {
-            const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-            
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-            drops[i]++;
-        }
-    }
-    
-    // Adjust frame rate based on device
-    const frameRate = isLowEndDevice() ? 60 : 35;
-    setInterval(drawMatrix, frameRate);
-    
-    // Throttled resize handler
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }, 250);
-    });
-}
-
-// Optimized Matrix Title Rotation
-function initMatrixTitleRotation() {
-    const matrixLines = document.querySelectorAll('.matrix-line');
     let currentIndex = 0;
     
-    if (matrixLines.length === 0) return;
-    
-    // Slower rotation on low-end devices
-    const rotationSpeed = isLowEndDevice() ? 4000 : 2500;
-    
-    setInterval(() => {
-        matrixLines.forEach(line => line.classList.remove('active'));
-        matrixLines[currentIndex].classList.add('active');
-        currentIndex = (currentIndex + 1) % matrixLines.length;
-    }, rotationSpeed);
-}
-
-// Optimized Legendary Typing Effect
-function initLegendaryTyping() {
-    const typedCommand = document.querySelector('.typed-command');
-    if (!typedCommand) return;
-    
-    const commands = [
-        'cat /etc/passwd',
-        'nmap -sS target.com',
-        'python exploit.py',
-        'sudo rm -rf /vulnerabilities',
-        'git commit -m "Secured"',
-        'docker run --security-opt',
-        'aws s3 sync --encrypt'
-    ];
-    
-    let commandIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    
-    function typeCommand() {
-        const currentCommand = commands[commandIndex];
+    function showNextRole() {
+        // Remove active class from current item
+        roleItems[currentIndex].classList.remove('active');
         
-        if (isDeleting) {
-            typedCommand.textContent = currentCommand.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            typedCommand.textContent = currentCommand.substring(0, charIndex + 1);
-            charIndex++;
-        }
+        // Move to next item
+        currentIndex = (currentIndex + 1) % roleItems.length;
         
-        // Optimize typing speed for performance
-        let typeSpeed = isDeleting ? (isLowEndDevice() ? 80 : 50) : (isLowEndDevice() ? 150 : 100);
-        
-        if (!isDeleting && charIndex === currentCommand.length) {
-            typeSpeed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            commandIndex = (commandIndex + 1) % commands.length;
-            typeSpeed = 500;
-        }
-        
-        setTimeout(typeCommand, typeSpeed);
+        // Add active class to new item
+        roleItems[currentIndex].classList.add('active');
     }
     
-    typeCommand();
+    // Start the carousel
+    setInterval(showNextRole, 3000);
 }
 
-// Optimized Hexagon Skill Interactions
-function initHexagonSkills() {
-    const hexagons = document.querySelectorAll('.skill-hexagon');
+// Smooth Scroll with Modern Easing
+function initSmoothScrolling() {
+    const ctaButtons = document.querySelectorAll('.cta-primary, .cta-secondary');
     
-    hexagons.forEach((hex, index) => {
-        // Use passive listeners for better performance
-        hex.addEventListener('mouseenter', () => {
-            if (!isLowEndDevice()) {
-                // Only create energy burst on high-end devices
-                const burst = document.createElement('div');
-                burst.style.cssText = `
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    width: 0;
-                    height: 0;
-                    background: radial-gradient(circle, rgba(0, 255, 136, 0.8) 0%, transparent 70%);
-                    border-radius: 50%;
-                    transform: translate(-50%, -50%);
-                    animation: energyBurst 0.6s ease-out;
-                    pointer-events: none;
-                    z-index: 10;
-                `;
-                
-                hex.appendChild(burst);
-                setTimeout(() => burst.remove(), 600);
+    ctaButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const targetId = button.getAttribute('onclick')?.match(/#(\w+)/)?.[1];
+            if (targetId) {
+                e.preventDefault();
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             }
-        }, { passive: true });
-        
-        hex.addEventListener('click', () => {
-            const level = hex.getAttribute('data-level');
-            const skillName = hex.getAttribute('data-skill');
-            showSkillPopup(skillName, level, hex);
         });
     });
 }
 
-// Optimized Skill Popup Display
-function showSkillPopup(skill, level, element) {
-    const popup = document.createElement('div');
-    popup.className = 'skill-popup';
-    popup.innerHTML = `
-        <div class="popup-content">
-            <h3>${skill}</h3>
-            <div class="skill-meter">
-                <div class="meter-fill" style="width: ${level}%"></div>
-            </div>
-            <span class="skill-percentage">${level}% Mastery</span>
+// Professional Skill Tags Interaction
+function initSkillTags() {
+    const skillTags = document.querySelectorAll('.skill-tag');
+    
+    skillTags.forEach(tag => {
+        tag.addEventListener('mouseenter', () => {
+            if (!isLowEndDevice()) {
+                // Create subtle glow effect
+                tag.style.boxShadow = '0 5px 20px rgba(0, 255, 136, 0.3)';
+            }
+        });
+        
+        tag.addEventListener('mouseleave', () => {
+            tag.style.boxShadow = '';
+        });
+        
+        // Add click interaction for mobile
+        tag.addEventListener('click', () => {
+            const skillName = tag.querySelector('span').textContent;
+            showSkillTooltip(skillName, tag);
+        });
+    });
+}
+
+// Modern Skill Tooltip
+function showSkillTooltip(skillName, element) {
+    const tooltip = document.createElement('div');
+    tooltip.className = 'skill-tooltip';
+    tooltip.innerHTML = `
+        <div class="tooltip-content">
+            <h4>${skillName}</h4>
+            <p>Click to learn more about my ${skillName} expertise</p>
         </div>
     `;
     
-    popup.style.cssText = `
+    tooltip.style.cssText = `
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 255, 136, 0.1));
-        border: 2px solid var(--primary-color);
-        border-radius: 15px;
-        padding: 2rem;
+        background: rgba(0, 0, 0, 0.9);
+        border: 1px solid var(--primary-color);
+        border-radius: 12px;
+        padding: 1.5rem;
         z-index: 1000;
-        animation: ${isLowEndDevice() ? 'popupAppearSimple' : 'popupAppear'} 0.3s ease-out;
-        backdrop-filter: blur(10px);
-        text-align: center;
         color: white;
+        text-align: center;
+        backdrop-filter: blur(10px);
+        animation: fadeInScale 0.3s ease-out;
+        max-width: 300px;
     `;
     
-    document.body.appendChild(popup);
+    document.body.appendChild(tooltip);
     
     setTimeout(() => {
-        popup.style.animation = `${isLowEndDevice() ? 'popupDisappearSimple' : 'popupDisappear'} 0.3s ease-out`;
-        setTimeout(() => popup.remove(), 300);
+        tooltip.style.animation = 'fadeOutScale 0.3s ease-out';
+        setTimeout(() => tooltip.remove(), 300);
     }, 2000);
 }
 
-// Optimized Legendary Button Effects
-function initLegendaryButtons() {
-    const buttons = document.querySelectorAll('.btn-legendary');
+// Professional Button Interactions
+function initModernButtons() {
+    const buttons = document.querySelectorAll('.cta-primary, .cta-secondary');
     
     buttons.forEach(button => {
+        // Add ripple effect on click
+        button.addEventListener('click', (e) => {
+            if (!isLowEndDevice()) {
+                createRippleEffect(e, button);
+            }
+        });
+        
+        // Add hover sound effect (optional)
         button.addEventListener('mouseenter', () => {
             if (!isLowEndDevice()) {
-                createParticleExplosion(button);
+                button.style.transform = 'translateY(-3px) scale(1.02)';
             }
-        }, { passive: true });
+        });
         
-        button.addEventListener('click', (e) => {
-            createShockwave(e.target);
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = '';
         });
     });
 }
 
-// Optimized Particle Explosion Effect
-function createParticleExplosion(element) {
-    const particles = element.querySelector('.btn-particles');
-    if (!particles) return;
+// Modern Ripple Effect
+function createRippleEffect(event, element) {
+    const ripple = document.createElement('div');
+    const rect = element.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
     
-    // Reduce particles on low-end devices
-    const particleCount = isLowEndDevice() ? 8 : 15;
-    
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.style.cssText = `
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: particleExplode 1s ease-out forwards;
-            animation-delay: ${i * 0.05}s;
-        `;
-        
-        particles.appendChild(particle);
-        setTimeout(() => particle.remove(), 1000);
-    }
-}
-
-// Optimized Shockwave Effect
-function createShockwave(element) {
-    const shockwave = document.createElement('div');
-    shockwave.style.cssText = `
+    ripple.style.cssText = `
         position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        border: 2px solid rgba(0, 255, 136, 0.6);
+        width: ${size}px;
+        height: ${size}px;
+        left: ${x}px;
+        top: ${y}px;
+        background: rgba(255, 255, 255, 0.3);
         border-radius: 50%;
-        transform: translate(-50%, -50%);
-        animation: shockwaveExpand 0.6s ease-out;
+        transform: scale(0);
+        animation: ripple 0.6s ease-out;
         pointer-events: none;
     `;
     
-    element.appendChild(shockwave);
-    setTimeout(() => shockwave.remove(), 600);
+    element.style.position = 'relative';
+    element.appendChild(ripple);
+    
+    setTimeout(() => ripple.remove(), 600);
 }
 
-// Optimized Hologram Cube Interaction
-function initHologramCube() {
-    const cube = document.querySelector('.profile-cube');
-    if (!cube) return;
+// Professional Social Links
+function initSocialLinks() {
+    const socialLinks = document.querySelectorAll('.social-link');
     
-    // Disable complex interactions on low-end devices
-    if (isLowEndDevice()) {
-        cube.style.animation = 'cubeRotateSimple 30s linear infinite';
-        return;
+    socialLinks.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            if (!isLowEndDevice()) {
+                link.style.transform = 'translateY(-3px) scale(1.1)';
+                link.style.boxShadow = '0 10px 20px rgba(0, 255, 136, 0.3)';
+            }
+        });
+        
+        link.addEventListener('mouseleave', () => {
+            link.style.transform = '';
+            link.style.boxShadow = '';
+        });
+    });
+}
+
+// Modern Profile Card Interactions
+function initProfileCard() {
+    const profileCard = document.querySelector('.profile-card-modern');
+    const techItems = document.querySelectorAll('.tech-item');
+    
+    if (profileCard) {
+        profileCard.addEventListener('mouseenter', () => {
+            if (!isLowEndDevice()) {
+                profileCard.style.transform = 'translateY(-10px)';
+                profileCard.style.boxShadow = '0 30px 80px rgba(0, 0, 0, 0.4)';
+            }
+        });
+        
+        profileCard.addEventListener('mouseleave', () => {
+            profileCard.style.transform = '';
+            profileCard.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.3)';
+        });
     }
     
-    let isRotating = true;
-    
-    cube.addEventListener('mouseenter', () => {
-        isRotating = false;
-        cube.style.animationPlayState = 'paused';
-    }, { passive: true });
-    
-    cube.addEventListener('mouseleave', () => {
-        isRotating = true;
-        cube.style.animationPlayState = 'running';
-    }, { passive: true });
-    
-    cube.addEventListener('click', () => {
-        cube.style.animation = 'cubeSpecialRotate 2s ease-in-out';
-        setTimeout(() => {
-            cube.style.animation = 'cubeRotate 20s linear infinite';
-        }, 2000);
+    // Tech stack hover effects
+    techItems.forEach((item, index) => {
+        item.addEventListener('mouseenter', () => {
+            if (!isLowEndDevice()) {
+                item.style.transform = 'translateY(-2px) scale(1.1)';
+                // Animate other items slightly
+                techItems.forEach((otherItem, otherIndex) => {
+                    if (otherIndex !== index) {
+                        otherItem.style.opacity = '0.6';
+                    }
+                });
+            }
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            item.style.transform = '';
+            techItems.forEach(otherItem => {
+                otherItem.style.opacity = '';
+            });
+        });
     });
 }
 
-// Optimized Network Node Connections
-function initNetworkNodes() {
-    const nodes = document.querySelectorAll('.network-node');
-    const connections = document.querySelector('.network-connections');
+// Modern Scroll Indicator
+function initScrollIndicator() {
+    const scrollIndicator = document.querySelector('.scroll-indicator');
     
-    if (isLowEndDevice()) return; // Skip on low-end devices
-    
-    nodes.forEach((node, index) => {
-        node.addEventListener('mouseenter', () => {
-            const lines = connections.querySelectorAll('.connection-line');
-            lines.forEach(line => {
-                line.style.stroke = '#00ffff';
-                line.style.strokeWidth = '3';
-                line.style.filter = 'drop-shadow(0 0 5px #00ffff)';
-            });
-        }, { passive: true });
+    if (scrollIndicator) {
+        scrollIndicator.addEventListener('click', () => {
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) {
+                aboutSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
         
-        node.addEventListener('mouseleave', () => {
-            const lines = connections.querySelectorAll('.connection-line');
-            lines.forEach(line => {
-                line.style.stroke = 'var(--primary-color)';
-                line.style.strokeWidth = '2';
-                line.style.filter = 'none';
-            });
+        // Hide scroll indicator when user scrolls
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                scrollIndicator.style.opacity = '0';
+            } else {
+                scrollIndicator.style.opacity = '1';
+            }
         }, { passive: true });
-    });
+    }
 }
 
-// Optimized Quantum Terminal Interaction
-function initQuantumTerminal() {
-    const terminal = document.querySelector('.quantum-terminal');
-    if (!terminal) return;
+// Performance Optimizations for Modern Design
+function initModernPerformanceOptimizations() {
+    // Reduce animations on low-end devices
+    if (isLowEndDevice()) {
+        document.documentElement.style.setProperty('--animation-duration', '0.2s');
+        
+        // Disable floating elements on low-end devices
+        const floatingElements = document.querySelector('.floating-elements');
+        if (floatingElements) {
+            floatingElements.style.display = 'none';
+        }
+        
+        // Simplify gradient orbs
+        const gradientOrbs = document.querySelectorAll('.gradient-orb');
+        gradientOrbs.forEach(orb => {
+            orb.style.filter = 'blur(30px)';
+            orb.style.opacity = '0.2';
+        });
+    }
     
-    terminal.addEventListener('click', () => {
-        const terminalBody = terminal.querySelector('.terminal-body-quantum');
-        const newLine = document.createElement('div');
-        newLine.className = 'quantum-line';
-        newLine.innerHTML = `
-            <span class="q-prompt">quantum@pratik:~$</span>
-            <span class="q-command">access_granted --level=legendary</span>
-        `;
+    // Optimize for reduced motion preference
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.body.classList.add('reduced-motion');
         
-        const cursorLine = terminalBody.lastElementChild;
-        terminalBody.insertBefore(newLine, cursorLine);
-        
-        setTimeout(() => {
-            const responseLine = document.createElement('div');
-            responseLine.className = 'quantum-line';
-            responseLine.innerHTML = `<span class="q-output success">🚀 Welcome to the legendary experience!</span>`;
-            terminalBody.insertBefore(responseLine, cursorLine);
-        }, 1000);
-    });
+        // Disable role carousel animation
+        const roleItems = document.querySelectorAll('.role-item');
+        roleItems.forEach(item => {
+            item.style.transition = 'none';
+        });
+    }
+}
+
+// Modern Loading Animation
+function initModernLoading() {
+    if (isMobile()) {
+        const mobileLoading = document.getElementById('mobile-loading');
+        if (mobileLoading) {
+            mobileLoading.style.display = 'flex';
+            
+            // Hide loading after hero is ready
+            setTimeout(() => {
+                mobileLoading.classList.add('fade-out');
+                setTimeout(() => {
+                    mobileLoading.style.display = 'none';
+                }, 500);
+            }, 1000);
+        }
+    }
 }
 
 // Resume Modal Functionality - RESTORED
@@ -386,29 +332,6 @@ function initResumeModal() {
             }
         });
     }
-}
-
-// Performance Monitor
-function initPerformanceOptimizations() {
-    // Disable animations on very low-end devices
-    if (navigator.hardwareConcurrency <= 2) {
-        document.documentElement.style.setProperty('--animation-duration', '0s');
-        document.body.classList.add('low-performance');
-    }
-    
-    // Reduce motion for users who prefer it
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        document.body.classList.add('reduced-motion');
-    }
-    
-    // Throttle scroll events
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-        if (scrollTimeout) return;
-        scrollTimeout = setTimeout(() => {
-            scrollTimeout = null;
-        }, 16); // ~60fps
-    }, { passive: true });
 }
 
 // Enhanced form submission handling with proper AJAX
@@ -529,39 +452,26 @@ function showNotification(message, type = 'info') {
     }, 4000);
 }
 
-// Initialize all optimized effects
+// Initialize all modern effects
 document.addEventListener('DOMContentLoaded', () => {
-    // Show mobile loading on mobile devices
-    if (isMobile()) {
-        const mobileLoading = document.getElementById('mobile-loading');
-        if (mobileLoading) {
-            mobileLoading.style.display = 'flex';
-            
-            // Hide loading after everything is initialized
-            setTimeout(() => {
-                mobileLoading.classList.add('fade-out');
-                setTimeout(() => {
-                    mobileLoading.style.display = 'none';
-                }, 500);
-            }, 1500);
-        }
-    }
+    // Show modern loading on mobile devices
+    initModernLoading();
     
     // Initialize performance optimizations first
-    initPerformanceOptimizations();
+    initModernPerformanceOptimizations();
     
     // Initialize mobile navigation
     initMobileNavigation();
     
+    // Initialize modern hero features
     setTimeout(() => {
-        initMatrixRain();
-        initMatrixTitleRotation();
-        initLegendaryTyping();
-        initHexagonSkills();
-        initLegendaryButtons();
-        initHologramCube();
-        initNetworkNodes();
-        initQuantumTerminal();
+        initRoleCarousel();
+        initSmoothScrolling();
+        initSkillTags();
+        initModernButtons();
+        initSocialLinks();
+        initProfileCard();
+        initScrollIndicator();
         initResumeModal(); // RESTORED
     }, 100);
 });
@@ -669,107 +579,62 @@ function initMobileOptimizations() {
     }
 }
 
-// Add optimized CSS animations
-const optimizedCSS = `
-/* Simplified animations for low-end devices */
-@keyframes popupAppearSimple {
-    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
-    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-}
-
-@keyframes popupDisappearSimple {
-    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-    100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
-}
-
-@keyframes cubeRotateSimple {
-    0% { transform: rotateY(0deg); }
-    100% { transform: rotateY(360deg); }
-}
-
-/* Performance optimizations */
-.low-performance * {
-    animation-duration: 0s !important;
-    transition-duration: 0.1s !important;
-}
-
-.reduced-motion * {
-    animation-duration: 0.3s !important;
-    animation-iteration-count: 1 !important;
-}
-
-/* Mobile-specific optimizations */
-@media (max-width: 768px) {
-    .skill-hexagon:active {
-        transform: scale(0.95);
+// Add modern CSS animations
+const modernCSS = `
+/* Modern Professional Animations */
+@keyframes fadeInScale {
+    0% { 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(0.8); 
     }
-    
-    .btn-legendary:active {
-        transform: scale(0.98);
-    }
-    
-    .project-card:active {
-        transform: scale(0.98);
-    }
-}
-
-/* Optimized existing animations */
-@keyframes energyBurst {
-    0% { width: 0; height: 0; opacity: 1; }
-    100% { width: 150px; height: 150px; opacity: 0; }
-}
-
-@keyframes popupAppear {
-    0% { transform: translate(-50%, -50%) scale(0) rotate(180deg); opacity: 0; }
-    100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
-}
-
-@keyframes popupDisappear {
-    0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
-    100% { transform: translate(-50%, -50%) scale(0) rotate(-180deg); opacity: 0; }
-}
-
-@keyframes particleExplode {
-    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
     100% { 
-        transform: translate(-50%, -50%) translate(${Math.random() * 80 - 40}px, ${Math.random() * 80 - 40}px) scale(0); 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1); 
+    }
+}
+
+@keyframes fadeOutScale {
+    0% { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1); 
+    }
+    100% { 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(0.8); 
+    }
+}
+
+@keyframes ripple {
+    0% { 
+        transform: scale(0); 
+        opacity: 1; 
+    }
+    100% { 
+        transform: scale(2); 
         opacity: 0; 
     }
 }
 
-@keyframes shockwaveExpand {
-    0% { width: 0; height: 0; opacity: 1; }
-    100% { width: 200px; height: 200px; opacity: 0; }
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-@keyframes cubeSpecialRotate {
-    0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
-    25% { transform: rotateX(90deg) rotateY(180deg) rotateZ(90deg); }
-    50% { transform: rotateX(180deg) rotateY(360deg) rotateZ(180deg); }
-    75% { transform: rotateX(270deg) rotateY(540deg) rotateZ(270deg); }
-    100% { transform: rotateX(360deg) rotateY(720deg) rotateZ(360deg); }
-}
-
-.skill-popup .meter-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    border-radius: 10px;
-    transition: width 1s ease-out;
-    animation: meterGlow 2s ease-in-out infinite;
-}
-
-.skill-meter {
-    width: 200px;
-    height: 10px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    margin: 1rem 0;
-    overflow: hidden;
-}
-
-@keyframes meterGlow {
-    0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 136, 0.5); }
-    50% { box-shadow: 0 0 20px rgba(0, 255, 136, 1); }
+@keyframes fadeInStagger {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* Mobile touch feedback */
@@ -797,21 +662,70 @@ const optimizedCSS = `
         width: 100px;
         height: 100px;
     }
+    
+    .cta-primary:active,
+    .cta-secondary:active {
+        transform: scale(0.98);
+    }
+    
+    .skill-tag:active {
+        transform: scale(0.95);
+    }
+    
+    .social-link:active {
+        transform: scale(0.95);
+    }
+}
+
+/* Reduced motion support */
+.reduced-motion * {
+    animation-duration: 0.3s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.2s !important;
+}
+
+/* Performance optimizations */
+.low-performance * {
+    animation-duration: 0s !important;
+    transition-duration: 0.1s !important;
+}
+
+.low-performance .floating-elements,
+.low-performance .gradient-orb {
+    display: none !important;
+}
+
+/* Modern tooltip styles */
+.skill-tooltip {
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.skill-tooltip h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.skill-tooltip p {
+    margin: 0;
+    color: var(--text-gray);
+    font-size: 0.9rem;
 }
 `;
 
 const style = document.createElement('style');
-style.textContent = optimizedCSS;
+style.textContent = modernCSS;
 document.head.appendChild(style);
 
-// Initialize mobile optimizations when DOM is ready
+// Initialize modern optimizations when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     initTouchInteractions();
     initMobileOptimizations();
     
     // Add touch feedback class to interactive elements
     if (isMobile()) {
-        const touchElements = document.querySelectorAll('.skill-hexagon, .btn-legendary, .project-card, .nav-link');
+        const touchElements = document.querySelectorAll('.cta-primary, .cta-secondary, .skill-tag, .social-link');
         touchElements.forEach(el => el.classList.add('touch-feedback'));
     }
 });
