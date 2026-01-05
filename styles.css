@@ -36,6 +36,32 @@
     --terminal-bg: var(--light-bg-secondary);
 }
 
+/* Light mode background adjustments */
+[data-theme="light"] .matrix-rain::before {
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 102, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(255, 0, 102, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 60% 30%, rgba(0, 255, 136, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 10% 90%, rgba(0, 102, 255, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 90% 60%, rgba(255, 0, 102, 0.04) 0%, transparent 40%);
+}
+
+[data-theme="light"] .cyber-grid {
+    background-image: 
+        linear-gradient(rgba(0, 255, 136, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 136, 0.02) 1px, transparent 1px),
+        linear-gradient(rgba(0, 102, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 102, 255, 0.015) 1px, transparent 1px);
+}
+
+[data-theme="light"] .bg-animation::after {
+    background: 
+        radial-gradient(ellipse at 25% 25%, rgba(0, 255, 136, 0.015) 0%, transparent 50%),
+        radial-gradient(ellipse at 75% 75%, rgba(0, 102, 255, 0.015) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(255, 0, 102, 0.01) 0%, transparent 60%);
+}
+
 /* Light mode social links */
 [data-theme="light"] .social-link {
     background: var(--light-bg);
@@ -301,7 +327,7 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Animated Background */
+/* Enhanced Animated Background for Entire Portfolio */
 .bg-animation {
     position: fixed;
     top: 0;
@@ -310,6 +336,7 @@ body {
     height: 100%;
     z-index: -1;
     overflow: hidden;
+    pointer-events: none;
 }
 
 .matrix-rain {
@@ -329,10 +356,13 @@ body {
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(0, 102, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, rgba(255, 0, 102, 0.1) 0%, transparent 50%);
-    animation: matrixMove 20s ease-in-out infinite;
+        radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 102, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(255, 0, 102, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 60% 30%, rgba(0, 255, 136, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 10% 90%, rgba(0, 102, 255, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 60%, rgba(255, 0, 102, 0.08) 0%, transparent 40%);
+    animation: matrixMove 25s ease-in-out infinite;
 }
 
 .cyber-grid {
@@ -342,10 +372,12 @@ body {
     width: 100%;
     height: 100%;
     background-image: 
-        linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: gridMove 30s linear infinite;
+        linear-gradient(rgba(0, 255, 136, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 136, 0.05) 1px, transparent 1px),
+        linear-gradient(rgba(0, 102, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 102, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px, 50px 50px, 100px 100px, 100px 100px;
+    animation: gridMove 40s linear infinite, gridPulse 15s ease-in-out infinite;
 }
 
 .floating-particles {
@@ -358,22 +390,116 @@ body {
 .floating-particles::after {
     content: '';
     position: absolute;
-    width: 4px;
-    height: 4px;
+    width: 3px;
+    height: 3px;
     background: var(--primary-color);
     border-radius: 50%;
     box-shadow: 
         0 0 10px var(--primary-color),
-        100px 200px 0 var(--secondary-color),
-        200px 100px 0 var(--accent-color),
-        300px 300px 0 var(--primary-color),
-        400px 150px 0 var(--secondary-color),
-        500px 250px 0 var(--accent-color);
-    animation: float 15s ease-in-out infinite;
+        150px 300px 0 var(--secondary-color),
+        300px 150px 0 var(--accent-color),
+        450px 400px 0 var(--primary-color),
+        600px 200px 0 var(--secondary-color),
+        750px 350px 0 var(--accent-color),
+        200px 500px 0 var(--primary-color),
+        500px 100px 0 var(--secondary-color),
+        800px 450px 0 var(--accent-color),
+        100px 600px 0 var(--primary-color),
+        400px 50px 0 var(--secondary-color),
+        700px 550px 0 var(--accent-color);
+    animation: float 20s ease-in-out infinite;
 }
 
 .floating-particles::after {
-    animation-delay: -7.5s;
+    animation-delay: -10s;
+    box-shadow: 
+        50px 250px 0 var(--accent-color),
+        250px 100px 0 var(--primary-color),
+        400px 300px 0 var(--secondary-color),
+        550px 450px 0 var(--accent-color),
+        700px 150px 0 var(--primary-color),
+        850px 400px 0 var(--secondary-color),
+        150px 550px 0 var(--accent-color),
+        350px 50px 0 var(--primary-color),
+        650px 500px 0 var(--secondary-color),
+        50px 650px 0 var(--accent-color),
+        450px 25px 0 var(--primary-color),
+        750px 600px 0 var(--secondary-color);
+}
+
+/* Additional Background Layer for More Depth */
+.bg-animation::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at 25% 25%, rgba(0, 255, 136, 0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 75% 75%, rgba(0, 102, 255, 0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(255, 0, 102, 0.02) 0%, transparent 60%);
+    animation: backgroundPulse 30s ease-in-out infinite;
+}
+
+/* Enhanced Animations */
+@keyframes matrixMove {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.8;
+    }
+    25% { 
+        transform: translateY(-30px) rotate(90deg);
+        opacity: 1;
+    }
+    50% { 
+        transform: translateY(-20px) rotate(180deg);
+        opacity: 0.9;
+    }
+    75% { 
+        transform: translateY(-40px) rotate(270deg);
+        opacity: 1;
+    }
+}
+
+@keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+@keyframes gridPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.8;
+    }
+    25% { 
+        transform: translateY(-15px) rotate(90deg);
+        opacity: 1;
+    }
+    50% { 
+        transform: translateY(-25px) rotate(180deg);
+        opacity: 0.9;
+    }
+    75% { 
+        transform: translateY(-10px) rotate(270deg);
+        opacity: 1;
+    }
+}
+
+@keyframes backgroundPulse {
+    0%, 100% { 
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
 }
 
 /* Navigation */
@@ -1947,10 +2073,24 @@ section {
     border-top: 1px solid var(--border-color);
 }
 
-/* Animations */
+/* Enhanced Animations */
 @keyframes matrixMove {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(180deg); }
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.8;
+    }
+    25% { 
+        transform: translateY(-30px) rotate(90deg);
+        opacity: 1;
+    }
+    50% { 
+        transform: translateY(-20px) rotate(180deg);
+        opacity: 0.9;
+    }
+    75% { 
+        transform: translateY(-40px) rotate(270deg);
+        opacity: 1;
+    }
 }
 
 @keyframes gridMove {
@@ -1958,9 +2098,40 @@ section {
     100% { transform: translate(50px, 50px); }
 }
 
+@keyframes gridPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
 @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-10px) rotate(90deg); }
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.8;
+    }
+    25% { 
+        transform: translateY(-15px) rotate(90deg);
+        opacity: 1;
+    }
+    50% { 
+        transform: translateY(-25px) rotate(180deg);
+        opacity: 0.9;
+    }
+    75% { 
+        transform: translateY(-10px) rotate(270deg);
+        opacity: 1;
+    }
+}
+
+@keyframes backgroundPulse {
+    0%, 100% { 
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+}
     50% { transform: translateY(-20px) rotate(180deg); }
     75% { transform: translateY(-10px) rotate(270deg); }
 }
@@ -5435,6 +5606,55 @@ img {
     .legendary-name .name-glitch,
     .legendary-name .name-shadow {
         display: none;
+    }
+    
+    /* Optimize background animations for mobile */
+    .bg-animation {
+        opacity: 0.7;
+    }
+    
+    .matrix-rain::before {
+        animation-duration: 35s; /* Slower animation */
+        background-image: 
+            radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(0, 102, 255, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 40% 80%, rgba(255, 0, 102, 0.08) 0%, transparent 50%);
+    }
+    
+    .cyber-grid {
+        animation-duration: 50s; /* Slower grid movement */
+        background-size: 75px 75px, 75px 75px, 150px 150px, 150px 150px;
+    }
+    
+    .floating-particles::before,
+    .floating-particles::after {
+        animation-duration: 25s; /* Slower particle movement */
+        box-shadow: 
+            0 0 8px var(--primary-color),
+            150px 300px 0 var(--secondary-color),
+            300px 150px 0 var(--accent-color),
+            450px 400px 0 var(--primary-color),
+            600px 200px 0 var(--secondary-color),
+            750px 350px 0 var(--accent-color);
+    }
+    
+    .bg-animation::after {
+        animation-duration: 40s; /* Slower background pulse */
+    }
+    
+    /* Reduce motion for battery saving */
+    @media (prefers-reduced-motion: reduce) {
+        .bg-animation {
+            opacity: 0.3;
+        }
+        
+        .matrix-rain::before,
+        .cyber-grid,
+        .floating-particles::before,
+        .floating-particles::after,
+        .bg-animation::after {
+            animation: none;
+        }
     }
     
     /* Simplify backgrounds */
