@@ -143,32 +143,9 @@ class PerformanceOptimizer {
     }
     
     init() {
-        this.optimizeImages();
         this.optimizeAnimations();
         this.setupResourceHints();
         this.monitorPerformance();
-    }
-    
-    optimizeImages() {
-        // Convert images to WebP if supported
-        const supportsWebP = this.checkWebPSupport();
-        
-        if (supportsWebP) {
-            document.querySelectorAll('img').forEach(img => {
-                if (img.src.includes('.jpg') || img.src.includes('.png')) {
-                    const webpSrc = img.src.replace(/\.(jpg|png)$/, '.webp');
-                    // Check if WebP version exists (you'd implement this check)
-                    img.src = webpSrc;
-                }
-            });
-        }
-    }
-    
-    checkWebPSupport() {
-        const canvas = document.createElement('canvas');
-        canvas.width = 1;
-        canvas.height = 1;
-        return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
     }
     
     optimizeAnimations() {
