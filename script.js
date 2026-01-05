@@ -144,7 +144,6 @@ class PerformanceOptimizer {
     
     init() {
         this.optimizeImages();
-        this.setupLazyLoading();
         this.optimizeAnimations();
         this.setupResourceHints();
         this.monitorPerformance();
@@ -170,27 +169,6 @@ class PerformanceOptimizer {
         canvas.width = 1;
         canvas.height = 1;
         return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
-    }
-    
-    setupLazyLoading() {
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        if (img.dataset.src) {
-                            img.src = img.dataset.src;
-                            img.removeAttribute('data-src');
-                            imageObserver.unobserve(img);
-                        }
-                    }
-                });
-            });
-            
-            document.querySelectorAll('img[data-src]').forEach(img => {
-                imageObserver.observe(img);
-            });
-        }
     }
     
     optimizeAnimations() {
